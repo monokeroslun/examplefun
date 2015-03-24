@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+body{
+  background-color:rgba(209, 209, 209, 0.61);
+}
+  #generator{
+    margin-top: 0.8em;
+  }
+</style>	
+</head>
+<body>
+<div style="text-align:center;height:400px;">
+	<div id="nameTag">你的名字</div>
+	<template id="nameTagTemplate">
+<style>
+.outer {
+  margin:0 auto;
+  border: 2px solid pink;
+  border-radius: 1em;
+  background: url(img/shadowback.jpg) no-repeat ;
+  background-size:100% 100%;
+  font-size: 20pt;
+  height: 7em;
+  text-align: center;
+  font-family: sans-serif;
+  font-weight: bold;
+  display: inline-block;
+  min-width: 300px;
+  
+}
+.name {
+  font-size: 45pt;
+  font-weight: normal;
+  margin-top: 0.8em;
+  padding-top: 0.2em;
+  margin-left: 0.6em;
+  margin-right: 0.6em;
+}
+</style>
+<div class="outer">
+  <div class="name">
+    <content></content>   
+  </div>
+  re'em
+</div>
+</template>
+<div id="generator">
+<input id="generator-inp" type="text" name="name">
+<button id="generator-button">生成</button>
+</div>
+</div>
+<script>
+var shadow = document.querySelector('#nameTag').createShadowRoot();
+var template = document.querySelector('#nameTagTemplate');
+var clone = document.importNode(template.content, true);
+shadow.appendChild(clone);
+var button=document.getElementById("generator-button");
+button.addEventListener("click",function(){
+  var v = document.getElementById("generator-inp").value;
+  if(typeof v =="string"&&v.length>0){
+    document.getElementById("nameTag").innerHTML=v;
+  }else{
+    alert("空的哦 miao");
+  }
+});
+
+</script>
+</body>
+</html>
